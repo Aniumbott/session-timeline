@@ -10,10 +10,12 @@
   --theme-primary: #5468fe;
   --theme-primary-dull: #2f3562;
   --theme-border: #393939;
+  --theme-border-light: #3939394d;
   --theme-text-dull: #666666;
 }
 
 *::-webkit-scrollbar {
+  box-sizing: border-box;
   display: none;
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */

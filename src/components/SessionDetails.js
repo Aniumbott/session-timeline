@@ -1,33 +1,24 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { IconClipboard } from "@tabler/icons-react";
 import ToggleSwitch from "./ToggleSwitch";
-import TimeLine from "./TimeLine";
+import TimeLine from "./Timeline";
 import { useParams } from "react-router-dom";
+import sesJSON from "../data/session.json";
 
 export default function SessionDetails() {
-  const [start, setStart] = useState(
-    new Date(Date.parse("2024-04-02T11:31:52.746Z"))
-  );
-  const [end, setEnd] = useState(
-    new Date(start.getTime() + 1000 * 60 * 60 * 2)
-  );
-  const [padding, setPadding] = useState(1);
+  const [session, setSession] = useState(sesJSON);
 
   return (
     <main className="flex flex-col h-screen flex-grow items-stretch">
-      <Details />
+      <Details sessionId={session.meetingId}/>
       <TimeLine
-        start={start}
-        end={end}
-        padding={padding}
-        setPadding={setPadding}
+        session={session}
       />
     </main>
   );
 }
 
-const Details = () => {
-  const { sessionId } = useParams();
+const Details = ({sessionId}) => {
   const [checked, setChecked] = useState(false);
   return (
     <div className="w-full h-[49px] p-[16px] border-b border-theme-border bg-background-secondary flex flex-row items-center justify-between">
@@ -39,7 +30,9 @@ const Details = () => {
       </div>
       <div className="flex flex-row gap-1">
         <p className="text-[14px]">Session:</p>
-        <p className="text-[14px] font-bold bg-theme-border px-[5px] rounded">{sessionId}</p>
+        <p className="text-[14px] font-bold bg-theme-border px-[5px] rounded">
+          {sessionId}
+        </p>
       </div>
       <div className="flex flex-row gap-2 items-center">
         <p className="text-[14px]">Show Participants timeline</p>

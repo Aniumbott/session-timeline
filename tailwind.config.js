@@ -12,6 +12,7 @@ module.exports = {
         "theme-primary": "var(--theme-primary)",
         "theme-primary-dull": "var(--theme-primary-dull)",
         "theme-border": "var(--theme-border)",
+        "theme-border-light": "var(--theme-border-light)",
         "theme-text-dull": "var(--theme-text-dull)",
       },
     },
