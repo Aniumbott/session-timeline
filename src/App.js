@@ -1,7 +1,7 @@
 import "./App.css";
 import { Routes, Route, Link, BrowserRouter } from "react-router-dom";
-import SessionDetails from "./components/SessionDetails";
-import Home from "./components/Home";
+import Session from "./pages/Session";
+import Home from "./pages/Home";
 import DisableZoom from "./components/DisableZoom";
 
 function App() {
@@ -10,7 +10,7 @@ function App() {
        <DisableZoom />
         <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/sessions/:sessionId" element={<SessionDetails />} />
+        <Route path="/sessions/:sessionId" element={<Session />} />
       </Routes>
       </BrowserRouter>
      

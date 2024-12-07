@@ -1,13 +1,12 @@
 import { useEffect, useState } from "react";
 import { IconClipboard } from "@tabler/icons-react";
-import ToggleSwitch from "./ToggleSwitch";
-import TimeLine from "./Timeline";
+import ToggleSwitch from "../components/ToggleSwitch";
+import TimeLine from "../components/Timeline";
 import { useParams } from "react-router-dom";
-import sesJSON from "../data/session.json";
 import { sessions } from "../data/sessions";
 
-export default function SessionDetails() {
-  const [session, setSession] = useState(sesJSON);
+export default function Session() {
+  const [session, setSession] = useState(null);
   const [showTimeline, setShowTimeline] = useState(true);
   const { sessionId } = useParams();
   useEffect(() => {

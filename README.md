@@ -1,70 +1,89 @@
-# Getting Started with Create React App
+# Frontend Part of the Full Stack Application
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project is designed to display detailed information about meeting sessions, including participant details and their activities over the timeline. The UI design is based on the Figma design provided [here](https://www.figma.com/design/WZAxSHpOFZrnLEzJt3mJkN/Analytics-Timeline?node-id=1-243&node-type=frame&t=iYgjs4UEeqsc9jjI-0).
 
-## Available Scripts
+## Technologies Used
 
-In the project directory, you can run:
+- React.js: For building the user interface.
+- Axios: For making HTTP requests to the backend APIs.
+- React Router: For handling routing within the application.
+- Tailwind CSS: For styling the components.
 
-### `npm start`
+## Project Structure
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+The project is organized as follows:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+```
+session-timeline/
+│
+├── public/                  # Public assets and the entry HTML file
+│   ├── index.html           # Main HTML file
+│   └── ...
+│
+├── src/                     # Source files
+│   ├── pages/               # Page components
+│   │   ├── Home.js          # Home page
+│   │   ├── Session.js       # Session page
+│   ├── components/          # Reusable React components
+│   ├── data/                # Data files for testing
+│   ├── App.js               # Main application component
+│   ├── index.js             # Entry point of the application
+│   └── ...
+│
+├── package.json             # Project metadata and dependencies
+└── README.md                # Project documentation
+```
 
-### `npm test`
+## Approach
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. **Timeline Component**: Initially, I used basic HTML divs with borders to create the timeline but faced difficulties in aligning the elements properly. I considered using a chart library, but it would be overkill for basic lines, so I decided to use a Table component as the base, with other components positioned absolutely for proper alignment.
 
-### `npm run build`
+2. **Network Issue Detection**: Since no data field was specified for displaying network issues, I wrote logic to detect them based on time logs and event activity. I constructed a sorted event list based on activity, and if an event was active while the session was not, it was detected as a network issue. If all events were inactive before the session ended, it was considered a logout.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+3. **Relative Positioning**: Each line represents event activity. To place these lines accurately, I used absolute positioning with calculated top and bottom values relative to the session start time and padding. The same method was used for event handles.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+4. **Handle Grouping**: Some handles overlapped, causing them to become hidden or non-interactive. I wrote logic to group handles based on time and padding.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+5. **Styling**: Tailwind CSS was used for styling the components.
 
-### `npm run eject`
+## Setup Instructions
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+To get started with the frontend part of the application, follow these steps:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+1. **Clone the repository**:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+   ```bash
+   git clone <repository-url>
+   cd session-timeline
+   ```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+2. **Install dependencies**:
+   Ensure you have Node.js installed, then run:
 
-## Learn More
+   ```bash
+   npm install
+   ```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+3. **Run the development server**:
+   Start the React development server:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+   ```bash
+   npm start
+   ```
 
-### Code Splitting
+   The application will open in your default web browser at `http://localhost:3000`.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+4. **Build for production**:
+   To create an optimized production build, run:
 
-### Analyzing the Bundle Size
+   ```bash
+   npm run build
+   ```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+5. **Deployment**: The production-ready build can be deployed to any static site hosting service.
 
-### Making a Progressive Web App
+## Conclusion
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+This project was a valuable learning experience, allowing me to work on a real-world project with clear design and requirements. I faced challenges in aligning elements on the timeline but overcame them by using the Table component as a base. Overall, I enjoyed the problem-solving aspect and building the UI for this application.
 
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+---
