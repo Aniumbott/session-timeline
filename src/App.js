@@ -10,7 +10,7 @@ function App() {
        <DisableZoom />
         <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/session/:sessionId" element={<SessionDetails />} />
+        <Route path="/sessions/:sessionId" element={<SessionDetails />} />
       </Routes>
       </BrowserRouter>
      

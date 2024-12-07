@@ -2,12 +2,14 @@ import React from "react";
 import { useEffect, useState } from "react";
 import TimeLineEntry from "./TimeLineEntry";
 
-export default function TimeLine({ session }) {
-  const [start, setStart] = useState(new Date());
-  const [end, setEnd] = useState(new Date());
-  const [padding, setPadding] = useState(1);
-  const [participants, setParticipants] = useState([]);
+export default function TimeLine({ session, showTimeline }) {
+  const [start, setStart] = useState(new Date()); // Session start time
+  const [end, setEnd] = useState(new Date()); // Session end time
+  const [padding, setPadding] = useState(1); // Padding between timestamps
+  const [participants, setParticipants] = useState([]); // List of participants in the session
+  const [timeStamps, setTimeStamps] = useState([]); // List of timestamps
 
+  // Update the state when the session changes
   useEffect(() => {
     if (session) {
       setStart(new Date(Date.parse(session.start)));
@@ -16,7 +18,7 @@ export default function TimeLine({ session }) {
     }
   }, [session]);
 
-  const [timeStamps, setTimeStamps] = useState([]);
+  // Generate timestamps based on the session start and end time
   useEffect(() => {
     const lst = [];
     for (
@@ -26,16 +28,14 @@ export default function TimeLine({ session }) {
     ) {
       lst.push(i.toTimeString().split(" ")[0].slice(0, 5));
     }
-    if (lst[lst.length - 1] !== end.toTimeString().split(" ")[0].slice(0, 5)) {
-      lst.push(end.toTimeString().split(" ")[0].slice(0, 5));
-    }
     setTimeStamps(lst);
   }, [start, end, padding]);
 
   return (
     <div className="h-full w-auto overflow-x-scroll">
       <table
-        className="border-separate border-spacing-0 border-l border-theme-border"
+        className="border-separate border-spacing-0 border-x border-theme-border"
+        // Update padding on CTRL+scrolL
         onWheel={(e) => {
           if (e.ctrlKey || e.metaKey) {
             let newPadding = padding + Math.round(e.deltaY / 100);
@@ -46,19 +46,20 @@ export default function TimeLine({ session }) {
         }}
       >
         <thead>
-          <TimeLineLabels
-            timeStamps={timeStamps}
-            padding={padding}
-            setPadding={setPadding}
-          />
+          {/* Timestamps as table header data */}
+          <TimeLineLabels timeStamps={timeStamps} />
         </thead>
         <tbody>
           {participants.map((p) => {
             return (
+              // Timeline entry for each participant as table row
               <TimeLineEntry
                 key={p.participantId}
-                timeStamps={timeStamps}
+                sessionStart={start}
                 participant={p}
+                padding={padding}
+                timeStamps={timeStamps}
+                showTimeline={showTimeline}
               />
             );
           })}
@@ -68,7 +69,7 @@ export default function TimeLine({ session }) {
   );
 }
 
-const TimeLineLabels = ({ timeStamps, padding, setPadding }) => {
+const TimeLineLabels = ({ timeStamps }) => {
   return (
     <tr className="sticky top-0 bg-background z-10">
       <th className="w-[75px] border-b border-theme-border"></th>

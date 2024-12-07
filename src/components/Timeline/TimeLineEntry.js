@@ -1,20 +1,16 @@
-import React, { useEffect, useState } from "react";
+import ParticipantDetails from "./ParticipantDetails";
+import ParticipantTimeline from "./ParticipantTimeline";
 
-export default function TimeLineEntry({ timeStamps, participant }) {
-  const [start, setStart] = useState(new Date());
-  const [end, setEnd] = useState(new Date());
-
-  useEffect(() => {
-    setStart(new Date(Date.parse(participant.timelog[0].start)));
-    setEnd(
-      new Date(
-        Date.parse(participant.timelog[participant.timelog.length - 1].end)
-      )
-    );
-  }, [participant]);
-
+export default function TimeLineEntry({
+  sessionStart,
+  participant,
+  padding,
+  timeStamps,
+  showTimeline,
+}) {
   return (
     <tr className="relative">
+      {/* Empty cells as table data */}
       <td className="min-w-[75px] border-b border-y-theme-border border-x-theme-border-light h-[119px]"></td>
       {timeStamps.map((timeStamp, index) => {
         return (
@@ -24,6 +20,23 @@ export default function TimeLineEntry({ timeStamps, participant }) {
           ></td>
         );
       })}
+      <td className="absolute top-0 left-0 h-full w-full pl-[23px] pt-4">
+        {/* Information about participant */}
+        <ParticipantDetails
+          name={participant.name}
+          id={participant.participantId}
+          sessionStart={sessionStart}
+          timelog={participant.timelog}
+        />
+        {showTimeline && (
+          // Timeline of events of the participant
+          <ParticipantTimeline
+            sessionStart={sessionStart}
+            participant={participant}
+            padding={padding}
+          />
+        )}
+      </td>
     </tr>
   );
 }
