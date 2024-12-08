@@ -1,6 +1,6 @@
-# Frontend Part of the Full Stack Application
+# Frontend Part of the Full Stack Application (Session Timeline)
 
-This project is designed to display detailed information about meeting sessions, including participant details and their activities over the timeline. The UI design is based on the Figma design provided [here](https://www.figma.com/design/WZAxSHpOFZrnLEzJt3mJkN/Analytics-Timeline?node-id=1-243&node-type=frame&t=iYgjs4UEeqsc9jjI-0).
+This project is designed to display detailed information about meeting sessions, including participant details and their activities over the timeline. The UI design is based on the Figma design provided [here](https://www.figma.com/design/WZAxSHpOFZrnLEzJt3mJkN/Analytics-Timeline?node-id=1-243&node-type=frame&t=iYgjs4UEeqsc9jjI-0). The backend for the project can be found [here](https://github.com/Aniumbott/session-timeline-backend).
 
 ## Technologies Used
 
