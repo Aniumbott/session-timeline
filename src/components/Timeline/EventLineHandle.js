@@ -49,7 +49,7 @@ export default function EventLineHandle({
       onMouseLeave={() => setShowToolTip(false)}
     >
       {event.type === "group" ? (
-        <p className="text-[14px] font-bold">{event.events.length}</p>
+        <p className="text-[14px] font-bold pointer-events-none">{event.events.length}</p>
       ) : (
         Icons[event.type][event.state ? 1 : 0]
       )}

@@ -3,23 +3,23 @@ import { IconClipboard } from "@tabler/icons-react";
 import ToggleSwitch from "../components/ToggleSwitch";
 import TimeLine from "../components/Timeline";
 import { useParams } from "react-router-dom";
-import { sessions } from "../data/sessions";
+import axios from "axios";
 
 export default function Session() {
   const [session, setSession] = useState(null);
   const [showTimeline, setShowTimeline] = useState(true);
   const { sessionId } = useParams();
+
   useEffect(() => {
-    setSession(sessions.find((s) => s.meetingId === sessionId));
+    gatherSession(sessionId).then((data) => {
+      setSession(data.session);
+    });
   }, [sessionId]);
 
   return (
     <main className="flex flex-col h-screen flex-grow items-stretch">
       {/* Header section */}
-      <Details
-        showTimeline={showTimeline}
-        setShowTimeline={setShowTimeline}
-      />
+      <Details showTimeline={showTimeline} setShowTimeline={setShowTimeline} />
 
       {/* Timeline section */}
       <TimeLine session={session} showTimeline={showTimeline} />
@@ -43,3 +43,11 @@ const Details = ({ showTimeline, setShowTimeline }) => {
     </div>
   );
 };
+
+// Fetch session details
+async function gatherSession(sessionId) {
+  const url = `${process.env.REACT_APP_API_URL}/sessions/${sessionId}`;
+  return await axios.get(url).then((response) => {
+    return response.data;
+  });
+}

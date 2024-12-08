@@ -82,6 +82,20 @@ To get started with the frontend part of the application, follow these steps:
 
 5. **Deployment**: The production-ready build can be deployed to any static site hosting service.
 
+## Usage
+
+On the home page, you can view all the sessions and click on a session to view its details. The session page displays the timeline with event activity and participant details. You can navigate back to the home page using the back button.
+
+In order to interact with the timeline, use the following controls:
+
+- Hover over the event handles to view the event details.
+- Use `CTRL` + `Mouse Scroll` to zoom in and out of the timeline.
+- Scroll horizontally or `SHIFT` + `Mouse Scroll` to change the scaling.
+
+## Screenshots
+
+![Home Page](/public/session-details.png)
+
 ## Conclusion
 
 This project was a valuable learning experience, allowing me to work on a real-world project with clear design and requirements. I faced challenges in aligning elements on the timeline but overcame them by using the Table component as a base. Overall, I enjoyed the problem-solving aspect and building the UI for this application.
