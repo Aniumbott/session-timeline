@@ -10,7 +10,7 @@ export default function EventLine({
   return (
     <div
       className={`absolute min-h-[4px] ${
-        type !== "session" && type !== "network" ? "bg-theme-primary" : "bg-theme-border"
+        type !== "session" && type !== "network" ? "bg-theme-primary" : "bg-theme-line-dark"
       } ${type==="network" ? "z-10" : "z-5"}`}
       style={{
         left: timeToPx(sessionStart, start, padding),

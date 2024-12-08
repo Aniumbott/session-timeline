@@ -29,7 +29,7 @@ export default function EventLineHandle({
         fixed ? "static" : "absolute"
       } flex items-center justify-center ${
         event.type === "session" || event.type === "network"
-          ? "bg-theme-border"
+          ? "bg-theme-line-dark"
           : event.type === "errors"
           ? "bg-theme-error"
           : "bg-theme-primary"
@@ -142,7 +142,7 @@ const ToolTip = ({ event, active }) => {
 
 // Event actions based on event types
 const EventActions = {
-  session: ["Start", "End"],
+  session: ["End", "Start"],
   network: ["Connected", "Disconnected"],
   mic: ["Muted", "Unmuted"],
   webcam: ["Off", "On"],
